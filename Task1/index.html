@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Hello World</h1>
+        <nav>
+            <li>
+                <ol>Home</ol>
+                <ol>About</ol>
+                <ol>Contact</ol>
+            </li>
+        </nav>
+        <div class="body">
+            <aside class="left">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores, ea.</aside>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cumque dolorem sit, rem
+                placeat dicta
+                similique? Placeat cupiditate nihil iure facere repellendus impedit architecto non error molestias
+                molestiae excepturi vero, facilis quae totam ab nesciunt neque voluptas dicta aut ea? Similique ea nam
+                recusandae optio voluptates, perferendis eligendi eum cumque!</p>
+            <aside class="right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, fugiat!</aside>
+        </div>
+        <footer>
+            <li>
+                <ul>
+                    <a href="https://www.facebook.com/">facebook</a>
+                    <a href="https://github.com/">github</a>
+                    <a href="www.linkedin.com">linkedin</a>
+                </ul>
+            </li>
+        </footer>
+    </div>
+
+
+
+
+    <script>
+        const element1=document.getElementById('container');
+        console.log(element1);
+        //getting the aside element
+        const element2=document.getElementsByClassName('left');
+        console.log(element2);
+        //getting the list element
+        const list =document.getElementsByTagName(`li`);
+        for(let i=0;i<list.length;i++){
+            console.log(list[i])
+        }
+        //getting the anchor tag elements
+        const anc=document.querySelectorAll(`a`);
+       for(let i=0;i<anc.length;i++){
+        console.log(anc[i]);
+       }
+      
+    </script>
+</body>
+
+</html>
