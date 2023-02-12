@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            height:400px;
+            width:700px;
+            border: 1px solid black;
+           display: flex;
+           flex-wrap: wrap;
+           justify-content: space-evenly;
+           
+        }
+        .btn{
+            height:20px;
+            width:700px;
+            display:flex;
+            flex-wrap: wrap;
+        }
+        .cube{
+            height: 50px;
+            width:50px;
+            border: 2px solid black;
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            position:sticky;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="box"></div>
+    <div class="btn">
+        <button onclick="Color()">Change Color</button>
+        <button onclick="AddChild()">Add Child</button>
+        <button onclick="DeleteChild()">Delete Child</button>
+    </div>
+
+    <script>
+        const container=document.querySelector(".box");
+        const col=['red','blue','green','yellow','magenta']
+        //changing the color of the container using random method
+        function Color(){
+            console.log('Color Changed')
+            const choice=col[Math.floor(Math.random()*col.length)];
+            container.style.backgroundColor = `${choice}`;
+        }
+        //adding a child in the container
+        function AddChild(){
+            console.log('add Child called')
+            // container.appendChild()=AddChild(<div id='boxes' style={{border: '1px solid black'}}></div>)
+            const newDiv=document.createElement('div')
+            newDiv.classList.add('cube')
+            container.appendChild(newDiv);
+        }
+
+        //deleting the las child in container
+        function DeleteChild(){
+            console.log('DeleteChild called')
+            let child=container.lastChild;
+            container.removeChild(child);
+        }
+    </script>
+</body>
+</html>
