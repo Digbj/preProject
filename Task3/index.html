@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+        }
+        #pic{
+            height:300px;
+            width:200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input id="inp" placeholder="Enter The Movie Name" />
+        <button id="btn">Search</button>
+        
+        </div>
+        <div id="result"></div>
+        <script>
+            const inp = document.getElementById('inp');
+            const search = document.getElementById('btn');
+            //adding an event listner on the button ie click
+            search.addEventListener("click", () => {
+                console.log(inp.value)
+                //to append the below element in the result div
+                const res=document.getElementById('result')
+                const inpt = inp.value;
+                const apikey = '5501d6b'// api key given after signup in omdbapi
+                //url followed by api key and the input value in the search bar
+                const url = `http://www.omdbapi.com/?apikey=${apikey}&t=${inpt}`;
+                //fetching the data from the url in the form of json file
+                fetch(url).then((response) => {
+                    return response.json();
+                }).then((data) => {
+                    //data is the object which contains the information about the movie
+                    console.log(data);
+                    
+                    //extracting the info from tha data obj
+                    const element = `
+                                    <img id="pic" src=${data.Poster} alt='Poster'>
+                                    <ul>
+                                        <li>Movie Title:${data.Title}</li>
+                                        <li>Year Of Release:${data.Year}</li>
+                                        <li>IMDB rating:${data.imdbRating}</li>
+                                        <li>Cast and Crew:${data.Actors}</li>
+                                    </ul>`
+                //appending the elements i the id='res' div   
+                    res.innerHTML=element;
+                })
+            })
+        </script>
+</body>
+
+</html>
