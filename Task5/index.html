@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="issueList">
+        <h2 id="pageNumber">Page Number 1</h2>
+        <ol ></ol>
+        <button id="load_prev">Previous</button>
+        <button id="load_next">Next</button>
+
+    </div>
+    <script>
+        let currentPageNumber=1;
+        const issuePerPage=9;
+        function fetchIssue(pageNumber){
+            fetch(`https://api.github.com/repositories/1296269/issues?page=${pageNumber}&per_page=${issuePerPage}`)
+            .then(res=>res.json())
+            .then(data=>{
+                const issueList=document.querySelector('#issueList ol');
+                issueList.innerHTML='';
+                data.forEach(issue => {
+                    const issueName=issue.title;
+                    const issueItem=document.createElement('li');
+                    issueItem.textContent=issueName;
+                    issueList.appendChild(issueItem);
+                    
+                });
+               const pageNumberHeading=document.querySelector('#pageNumber');
+               pageNumberHeading.textContent=`Page Number ${pageNumber}`;
+
+            })
+            .catch(error=>{
+                console.error(error);
+            })
+        }
+        document.addEventListener('DOMContentLoaded',()=>{
+            fetchIssue(currentPageNumber);
+            const loadNextButton=document.querySelector('#load_next');
+            const loadPrevButton=document.querySelector("load_prev");
+            loadNextButton.addEventListener('click',()=>{
+                currentPageNumber++;
+                fetchIssue(currentPageNumber);
+            })
+            loadPrevButton.addEventListener('click',()=>{
+                if(currentPageNumber>1){
+                    currentPageNumber--;
+                    fetchIssue(currentPageNumber);
+                }
+            })
+        })
+    </script>
+    
+</body>
+</html>
